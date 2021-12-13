@@ -55,6 +55,7 @@
                             <div class="col-md-8 offset-md-4">
                                 <a href="{{ route('auth.facebook')}}">Facebook</a>
                                 <a href="{{ route('auth.google')}}">Google</a>
+                                <a href="{{ route('auth.git')}}">Github</a>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>

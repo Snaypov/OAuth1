@@ -19,7 +19,7 @@ class SocialController extends Controller
         $isUser = User::where('email', $user->email)->first();
 
         if($isUser){
-            Auth::login($isUser);    
+            Auth::login($isUser);
             return redirect()->route('home');
         }
         else{
@@ -32,8 +32,6 @@ class SocialController extends Controller
             Auth::login($createUser);
             return redirect('home');
         }
-
-        return redirect()->back();
     }
 
     public function redirectGoogle(){
@@ -45,7 +43,31 @@ class SocialController extends Controller
         $isUser = User::where('email', $user->email)->first();
 
         if($isUser){
-            Auth::login($isUser);    
+            Auth::login($isUser);
+            return redirect()->route('home');
+        }
+        else{
+            $createUser = User::create([
+                'name' => $user->name,
+                'email' => $user->email,
+                'password' => Hash::make('12345678'),
+            ]);
+
+            Auth::login($createUser);
+            return redirect('home');
+        }
+    }
+
+    public function redirectGit(){
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function callbackGit(){
+        $user = Socialite::driver('github')->user();
+        $isUser = User::where('email', $user->email)->first();
+
+        if($isUser){
+            Auth::login($isUser);
             return redirect()->route('home');
         }
         else{

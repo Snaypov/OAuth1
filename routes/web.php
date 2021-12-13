@@ -22,9 +22,11 @@ Route::get('/', function () {
 Route::get('/facebook/auth', [App\Http\Controllers\SocialController::class, 'redirect'])->name('auth.facebook');
 Route::get('/facebook/auth/callback', [App\Http\Controllers\SocialController::class, 'callback']);
 
-
 Route::get('/auth/google', [App\Http\Controllers\SocialController::class, 'redirectGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [App\Http\Controllers\SocialController::class, 'callbackGoogle']);
+
+Route::get('/auth/github', [App\Http\Controllers\SocialController::class, 'redirectGit'])->name('auth.git');
+Route::get('/auth/github/callback', [App\Http\Controllers\SocialController::class, 'callbackGit']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
